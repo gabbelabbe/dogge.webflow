@@ -297,8 +297,11 @@
           })
         },
         reloadJs() {
-          $('script[src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js"]').remove()
-          $('<script>').attr('src', "https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js").appendTo('head')
+          $('.w-dropdown-toggle').forEach(element => {
+            element.click(function() {
+              $(this).parent().next().toggle();
+            })
+          });
         },
         selectSize(i, s, type) {
           this.rooms[i][type].selectedSize = s
