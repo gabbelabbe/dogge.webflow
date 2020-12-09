@@ -16,7 +16,6 @@
         <a href="#" v-bind:class="{ active: room.wallsSelected }" @click="toggle(i, {walls})" class="form-btn w-button">Väggar</a>
       </div>
       <div class="p-100 b-border" v-if="room.carpentrySelected">
-        <script src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js" type="text/javascript"></script>
         <div data-animation="slide" data-duration="500" data-infinite="1" class="slider w-slider">
           <div class="w-slider-mask">
             <div class="slide-3 w-slide"></div>
@@ -60,7 +59,6 @@
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.roofSelected">
-        <script src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js" type="text/javascript"></script>
         <div data-animation="slide" data-duration="500" data-infinite="1" class="slider w-slider">
           <div class="w-slider-mask">
             <div class="slide-3 w-slide"></div>
@@ -95,7 +93,6 @@
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.floorSelected">
-        <script src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js" type="text/javascript"></script>
         <div data-animation="slide" data-duration="500" data-infinite="1" class="slider w-slider">
           <div class="text-block-5">This is some text inside of a div block.</div>
           <div class="w-slider-mask">
@@ -135,7 +132,6 @@
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.wallsSelected">
-        <script src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js" type="text/javascript"></script>
         <div data-animation="slide" data-duration="500" data-infinite="1" class="slider w-slider">
           <div class="w-slider-mask">
             <div class="slide-3 w-slide"></div>
@@ -265,6 +261,7 @@
         } else {
           this.rooms[i][key] = {...type[key]}
           this.rooms[i][key + 'Selected'] = true;
+          this.reloadJs()
         }
       },
       addRoom() {
@@ -275,6 +272,10 @@
           floorSelected: false,
           roofSelected: false
         })
+      },
+      reloadJs() {
+        $('script[src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js"]').remove()
+        $('<script>').attr('src', "https://assets.website-files.com/5f884aeb16efaa7d292518f7/js/webflow.8a73f8f8f.js").appendTo('head')
       },
       selectSize(i, s, type) {
         this.rooms[i][type].selectedSize = s
