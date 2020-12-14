@@ -48,30 +48,30 @@
           </div>
           <div class="form-section-wrapper">
             <div class="text-18 mb-10 light"><strong>Snickerier. </strong>Ange information om snickeriet i taket.</div>
-            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.carpentry.selectedDoorWindowAmount}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.carpentry.selectedDoorWindowAmount ? room.carpentry.selectedDoorWindowAmount : 'Antal dörrar och Fönster'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="i in 10" @click="room.carpentry.selectedDoorWindowAmount = i; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{i}}</a>
               </nav>
             </div>
-            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.carpentry.selectedSize}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'Höjd på snickeri i'}} cm</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="s in carpentry.sizes" @click="room.carpentry.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
               </nav>
             </div>
-            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.carpentry.selectedFloorSize}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.carpentry.selectedFloorSize ? room.carpentry.selectedFloorSize + ' kvm' : 'Kvadratmeter Golv'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="s in floor.sizes" @click="room.carpentry.selectedFloorSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
               </nav>
             </div>
@@ -91,21 +91,21 @@
           </div>
           <div class="form-section-wrapper">
             <div class="text-18 mb-10 light"><strong>Tak. </strong>Ange information om taket i rummet.</div>
-            <div data-hover="" data-delay="0" class="dropdown-3 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-3 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.roof.selectedLevelOfPuttyKnife}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.roof.selectedLevelOfPuttyKnife ? room.roof.selectedLevelOfPuttyKnife : 'Nivå av spackel'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="pk in walls.levelOfPuttyKnife" @click="room.roof.selectedLevelOfPuttyKnife = pk; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{pk}}</a>
               </nav>
             </div>
-            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.roof.selectedSize}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.roof.selectedSize ? room.roof.selectedSize + ' kvm' : 'Kvadratmeter Golv'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="s in floor.sizes" @click="room.roof.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
               </nav>
             </div>
@@ -130,21 +130,21 @@
           </div>
           <div class="form-section-wrapper">
             <div class="text-18 mb-10 light"><strong>Golv.</strong> Ange information om golvet i rummet.</div>
-            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.floor.doorAmount}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.floor.doorAmount ? room.floor.doorAmount : 'Antal Trösklar'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="i in 5" @click="room.floor.doorAmount = i; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{i}}</a>
               </nav>
             </div>
-            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.floor.selectedSize}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.floor.selectedSize ? room.floor.selectedSize + ' kvm' : 'Kvadratmeter Golv'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="s in room.floor.sizes" @click="room.floor.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
               </nav>
             </div>
@@ -164,30 +164,30 @@
           </div>
           <div class="form-section-wrapper">
             <div class="text-18 mb-10 light"><strong>Väggar. </strong>Ange information om väggarna i rummet.</div>
-            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.walls.selectedFloorSize}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.walls.selectedFloorSize ? room.walls.selectedFloorSize + ' kvm' : 'Kvadratmeter golv'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
-                <a v-for="s in floor.sizes" @click="room.walls.selectedFloorSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+                <a v-for="s in floor.sizes" @click="room.walls.selectedFloorSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link" tabindex="0">{{s}}</a>
               </nav>
             </div>
-            <div data-hover="" data-delay="0" class="dropdown-3 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-3 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.walls.selectedLevelOfPuttyKnife}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.walls.selectedLevelOfPuttyKnife ? room.walls.selectedLevelOfPuttyKnife : 'Nivå av spackel'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="pk in walls.levelOfPuttyKnife" @click="room.walls.selectedLevelOfPuttyKnife = pk; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{pk}}</a>
               </nav>
             </div>
-            <div data-hover="" data-delay="0" class="dropdown-4 w-dropdown">
+            <div data-hover="" data-delay="0" class="dropdown-4 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.walls.selectedHeight}">
                 <div class="icon w-icon-dropdown-toggle"></div>
                 <div class="text-block-4">{{room.walls.selectedHeight ? room.walls.selectedHeight + ' m' : 'Takhöjd'}}</div>
               </div>
-              <nav class="dropdown-list w-dropdown-list">
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a v-for="h in walls.height" @click="room.walls.selectedHeight = h; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{h}}</a>
               </nav>
             </div>
@@ -280,11 +280,15 @@
           const key = Object.keys(type)[0]
           if (this.rooms[i][key]) {
             delete this.rooms[i][key]
-            this.rooms[i][key + 'Selected'] = false;
+            this.rooms[i][key + 'Selected'] = false
           } else {
             this.rooms[i][key] = {...type[key]}
-            this.rooms[i][key + 'Selected'] = true;
-            this.reloadJs()
+            this.rooms[i][key + 'Selected'] = true
+            console.log('loading JS')
+            setTimeout(() => {
+              this.reloadJs()
+              console.log('JS loaded')
+            }, 200);
           }
         },
         addRoom() {
@@ -297,11 +301,12 @@
           })
         },
         reloadJs() {
-          $('.w-dropdown-toggle').forEach(element => {
-            element.click(function() {
-              $(this).parent().next().toggle();
-            })
-          });
+          console.log($('.w-dropdown-toggle'))
+          $('.w-dropdown-toggle').off('click')
+          $('.w-dropdown-toggle').click(function() {
+            console.log($(this).next())
+            $(this).next().toggleClass('w--open')
+          })
         },
         selectSize(i, s, type) {
           this.rooms[i][type].selectedSize = s
