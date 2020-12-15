@@ -3,12 +3,12 @@
   <div class="form-wrapper">
     <div class="p-100 b-border">
       <div class="form-header-wrapper">
-        <h2 class="form-header">Ange information om varje rum som ska renoveras.</h2><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f89a0aadeba3b0aebe9c120_cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" class="image-4">
+        <h2 class="form-header">Ange information om varje rum som ska renoveras.</h2><img src="images/cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" class="image-4">
       </div>
     </div>
-    <div v-for="(room, i) in rooms" :key="room.id">
+    <div v-for="(room, i) in rooms" :key="i">
       <div class="p-100 form-section-wrapper" style="background-color: white;">
-        <div class="h1-banner mb-10">Rum {{ room.id }}</div>
+        <div class="h1-banner mb-10">Rum {{ i + 1 }}  <span class="material-icons" style="cursor: pointer;" @click="deleteRoom(i)">delete</span></div>
         <div class="text-18 mb-10">Tryck på det du behöver renovera i rummet.</div>
         <a href="#" v-bind:class="{ active: room.carpentrySelected }" @click="toggle(i, {carpentry})" class="form-btn w-button">Snickerier</a>
         <a href="#" v-bind:class="{ active: room.roofSelected }" @click="toggle(i, {roof})" class="form-btn w-button">Tak</a>
@@ -21,8 +21,8 @@
             <div class="slide-3 w-slide"></div>
             <div class="slide-4 w-slide"></div>
           </div>
-          <div class="left-arrow-2 w-slider-arrow-left"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e85c362fb3c60a93b_arrow-left.svg" loading="lazy" alt=""></div>
-          <div class="right-arrow-2 w-slider-arrow-right"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e7ad38995453b2252_arrow-right.svg" loading="lazy" alt=""></div>
+          <div class="left-arrow-2 w-slider-arrow-left"><img src="images/arrow-left.svg" loading="lazy" alt=""></div>
+          <div class="right-arrow-2 w-slider-arrow-right"><img src="images/arrow-right.svg" loading="lazy" alt=""></div>
           <div class="slide-nav-2 w-slider-nav w-round"></div>
         </div>
         <div class="form-section-wrapper">
@@ -64,8 +64,8 @@
             <div class="slide-3 w-slide"></div>
             <div class="slide-4 w-slide"></div>
           </div>
-          <div class="left-arrow-2 w-slider-arrow-left"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e85c362fb3c60a93b_arrow-left.svg" loading="lazy" alt=""></div>
-          <div class="right-arrow-2 w-slider-arrow-right"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e7ad38995453b2252_arrow-right.svg" loading="lazy" alt=""></div>
+          <div class="left-arrow-2 w-slider-arrow-left"><img src="images/arrow-left.svg" loading="lazy" alt=""></div>
+          <div class="right-arrow-2 w-slider-arrow-right"><img src="images/arrow-right.svg" loading="lazy" alt=""></div>
           <div class="slide-nav-2 w-slider-nav w-round"></div>
         </div>
         <div class="form-section-wrapper">
@@ -103,8 +103,8 @@
               </div>
             </div>
           </div>
-          <div class="left-arrow-2 w-slider-arrow-left"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e85c362fb3c60a93b_arrow-left.svg" loading="lazy" alt=""></div>
-          <div class="right-arrow-2 w-slider-arrow-right"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e7ad38995453b2252_arrow-right.svg" loading="lazy" alt=""></div>
+          <div class="left-arrow-2 w-slider-arrow-left"><img src="images/arrow-left.svg" loading="lazy" alt=""></div>
+          <div class="right-arrow-2 w-slider-arrow-right"><img src="images/arrow-right.svg" loading="lazy" alt=""></div>
           <div class="slide-nav-2 w-slider-nav w-round"></div>
         </div>
         <div class="form-section-wrapper">
@@ -137,8 +137,8 @@
             <div class="slide-3 w-slide"></div>
             <div class="slide-4 w-slide"></div>
           </div>
-          <div class="left-arrow-2 w-slider-arrow-left"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e85c362fb3c60a93b_arrow-left.svg" loading="lazy" alt=""></div>
-          <div class="right-arrow-2 w-slider-arrow-right"><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e7ad38995453b2252_arrow-right.svg" loading="lazy" alt=""></div>
+          <div class="left-arrow-2 w-slider-arrow-left"><img src="images/arrow-left.svg" loading="lazy" alt=""></div>
+          <div class="right-arrow-2 w-slider-arrow-right"><img src="images/arrow-right.svg" loading="lazy" alt=""></div>
           <div class="slide-nav-2 w-slider-nav w-round"></div>
         </div>
         <div class="form-section-wrapper">
@@ -175,7 +175,7 @@
         </div>
       </div>
     </div>
-    <div class="p-100 white flex-center"><img @click="addRoom" src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f9fe09e6894d6feeb59d75b_Vector.svg" loading="lazy" alt="">
+    <div class="p-100 white flex-center"><img @click="addRoom" src="images/Vector_1.svg" loading="lazy" alt="">
       <div class="h1-banner ml-20 light">Addera ett rum.</div>
     </div>
     <div class="form-checkout-section">
@@ -244,7 +244,6 @@
       },
       rooms: [
         {
-          id: 1,
           carpentrySelected: false,
           wallsSelected: false,
           floorSelected: false,
@@ -270,24 +269,32 @@
       },
       addRoom() {
         this.rooms.push({
-          id: this.rooms.length + 1,
           carpentrySelected: false,
           wallsSelected: false,
           floorSelected: false,
           roofSelected: false
         })
       },
+      deleteRoom(i) {
+        this.rooms = this.rooms.filter((room, index) => {
+          return i != index
+        })
+      },
       reloadJs() {
         $(document).off('click')
-        $('.w-dropdown-toggle').off('click')
-        $('.w-dropdown-toggle').click(function() {
-          $('.w-dropdown-toggle').next().removeClass('w--open')
-          $(this).next().toggleClass('w--open')
+        $('.w-dropdown').off('click')
+        $('.w-dropdown').click(function() {
+          $('.w-dropdown').each((i, dom) => {
+            $(dom).children().last().removeClass('w--open')
+          })
+          $(this).children().last().toggleClass('w--open')
         })
         $(document).on("click", function(event){
-          var $trigger = $(".w-dropdown-toggle")
+          var $trigger = $(".w-dropdown")
           if($trigger !== event.target && !$trigger.has(event.target).length){
-            $('.w-dropdown-toggle').next().removeClass('w--open')
+            $('.w-dropdown').each((i, dom) => {
+              $(dom).children().last().removeClass('w--open')
+            })
           }            
         })
       },
