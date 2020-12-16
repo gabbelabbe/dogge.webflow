@@ -108,7 +108,7 @@
         <h2 class="form-header">Ange information om varje rum som ska renoveras.</h2><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f89a0aadeba3b0aebe9c120_cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" class="image-4">
       </div>
     </div>
-    <div v-for="(room, i) in rooms" :key="i">
+    <div v-for="(room, i) in rooms" :key="i" style="background-color: white;">
       <div class="p-100 form-section-wrapper" style="background-color: white;">
         <div class="h1-banner mb-10">Rum {{ i + 1 }}  <span class="material-icons" style="cursor: pointer;" @click="deleteRoom(i)">delete</span></div>
         <div class="text-18 mb-10">Tryck på det du behöver renovera i rummet.</div>
