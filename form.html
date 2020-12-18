@@ -1,5 +1,41 @@
 <div class="form-content" id="app">
   <div class="div-block-90"></div>
+  <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form-2" style="display: block;">
+    <div style="display: flex; justify-content: space-between;">
+      <input style="max-width: 45%;" type="text" autocomplete="name" class="text-field-3 w-input" autofocus="true" maxlength="256" name="Namn" data-name="Namn" placeholder="Namn" id="Namn" required="" :value="name">
+      <input style="max-width: 45%;" type="text" autocomplete="street-address" class="text-field-3 w-input" maxlength="256" name="Gatuadress" data-name="Gatuadress" placeholder="Gatuadress" id="Gatuadress" required="" :value="address">
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+      <input style="max-width: 45%;" type="email" autocomplete="email" class="text-field-3 w-input" maxlength="256" name="Mailadress" data-name="Mailadress" placeholder="Mailadress" id="Mailadress" required="" :value="email">
+      <input style="max-width: 45%;" type="tel" autocomplete="tel" class="text-field-3 w-input" maxlength="256" name="Telefonummer" data-name="Telefonummer" placeholder="Telefonummer" id="Telefonummer" required="" :value="tel">
+    </div>
+    <textarea placeholder="Meddelande" maxlength="5000" id="Meddelande" name="Meddelande" data-name="Meddelande" class="text-field-3 meddelande w-input" :value="msg"></textarea>
+    <div v-for="(room, i) in rooms" :key="i">
+      <div v-if="room.floorSelected">
+        <input type="hidden" value="room.floor.selectedSize" id="FloorSize" name="Golv Storlek" data-name="Golv Storlek" class="w-input text-field-3">
+        <input type="hidden" value="room.floor.selectedFloorTreatment" id="FloorTreatment" name="Behandling av golv" data-name="Behandling av golv" class="w-input text-field-3">
+        <input type="hidden" value="room.floor.doorAmount" id="DoorAmount" name="Mängd Dörrar" data-name="Mängd Dörrar" class="w-input text-field-3">
+      </div>
+      <div v-if="room.carpentrySelected">
+        <input type="hidden" value="room.carpentry.selectedFloorSize" id="FloorSizecarpentry" name="Golv Storlek" data-name="Golv Storlek" class="w-input text-field-3">
+        <input type="hidden" value="room.carpentry.ncsCode" id="ncsCodecarpentry" name="NCS Kod" data-name="NCS Kod" class="w-input text-field-3">
+        <input type="hidden" value="room.carpentry.selectedDoorWindowAmount" id="DoorWindowAmount" name="Mängd Dörrar och Fönster" data-name="Mängd Dörrar och Fönster" class="w-input text-field-3">
+        <input type="hidden" value="room.carpentry.selectedSize" id="Height" name="Höjd på Snickeriet" data-name="Höjd på Snickeriet" class="w-input text-field-3">
+      </div>
+      <div v-if="room.roofSelected">
+        <input type="hidden" value="room.roof.selectedSize" id="FloorSizeroof" name="Tak Storlek" data-name="Tak Storlek" class="w-input text-field-3">
+        <input type="hidden" value="room.roof.selectedLevelOfPuttyKnife" id="LevelOfPuttyKnife" name="Mängd Spackel" data-name="Mängd Spackel" class="w-input text-field-3">
+        <input type="hidden" value="room.roof.ncsCode" id="ncsCoderoof" name="NCS Kod" data-name="NCS Kod" class="w-input text-field-3">
+      </div>
+      <div v-if="room.wallsSelected">
+        <input type="hidden" value="room.walls.selectedFloorSize" id="FloorSizewalls" name="Golv Storlek" data-name="Golv Storlek" class="w-input text-field-3">
+        <input type="hidden" value="room.walls.selectedHeight" id="Height" name="Höjd på väggarna" data-name="Höjd på väggarna" class="w-input text-field-3">
+        <input type="hidden" value="room.walls.selectedLevelOfPuttyKnife" id="LevelOfPuttyKnife" name="Mängd Spackel" data-name="Mängd Spackel" class="w-input text-field-3">
+        <input type="hidden" value="room.walls.ncsCode" id="ncsCodewalls" name="NCS Kod" data-name="NCS Kod" class="w-input text-field-3">
+      </div>
+    </div>
+    <input type="submit" value="Submit" data-wait="Please wait..." class="w-button" ref="submitOffert">
+  </form>
   <div class="form-wrapper" v-if="viewSummary">
     <div class="p-100 b-border">
       <div class="form-header-wrapper" style="flex-direction: column; margin-bottom: 0;">
@@ -18,17 +54,15 @@
         </div>
         <h2 class="form-header" style="margin-bottom: 40px;">Ange dina uppgifter för att fullfölja beställningen.</h2>
         <div style="display: flex; flex-direction: column;">
-          <form id="email-form" name="email-form" data-name="Email Form" method="post" action="/#" data-netlify="true" class="form-2">
-            <div style="display: flex; justify-content: space-between;">
-              <input style="max-width: 45%;" type="text" class="text-field-3 w-input" autofocus="true" maxlength="256" name="Namn" data-name="Namn" placeholder="Namn" id="Namn" required="">
-              <input style="max-width: 45%;" type="text" class="text-field-3 w-input" maxlength="256" name="Gatuadress" data-name="Gatuadress" placeholder="Gatuadress" id="Gatuadress" required="">
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-              <input style="max-width: 45%;" type="email" class="text-field-3 w-input" maxlength="256" name="Mailadress" data-name="Mailadress" placeholder="Mailadress" id="Mailadress" required="">
-              <input style="max-width: 45%;" type="tel" class="text-field-3 w-input" maxlength="256" name="Telefonummer" data-name="Telefonummer" placeholder="Telefonummer" id="Telefonummer" required="">
-            </div>
-            <textarea placeholder="Meddelande" maxlength="5000" id="Meddelande" name="Meddelande" data-name="Meddelande" class="text-field-3 meddelande w-input"></textarea>
-          </form>
+          <div style="display: flex; justify-content: space-between;">
+            <input style="max-width: 45%;" autocomplete="name" type="text" class="text-field-3 w-input" autofocus="true" maxlength="256" name="Namn" data-name="Namn" placeholder="Namn" id="Namn" required="" v-model="name">
+            <input style="max-width: 45%;" autocomplete="street-address" type="text" class="text-field-3 w-input" maxlength="256" name="Gatuadress" data-name="Gatuadress" placeholder="Gatuadress" id="Gatuadress" required="" v-model="address">
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <input style="max-width: 45%;" autocomplete="email" type="email" class="text-field-3 w-input" maxlength="256" name="Mailadress" data-name="Mailadress" placeholder="Mailadress" id="Mailadress" required="" v-model="email">
+            <input style="max-width: 45%;" autocomplete="tel" type="tel" class="text-field-3 w-input" maxlength="256" name="Telefonummer" data-name="Telefonummer" placeholder="Telefonummer" id="Telefonummer" required="" v-model="tel">
+          </div>
+          <textarea placeholder="Meddelande" maxlength="5000" id="Meddelande" name="Meddelande" data-name="Meddelande" class="text-field-3 meddelande w-input" v-model="msg"></textarea>
         </div>
       </div>
     </div>
@@ -95,7 +129,7 @@
       </div>
     </div>
     <div class="form-checkout-section">
-      <a href="#" class="form-btn active checkout-btn w-button" @click="viewSummary = !viewSummary">Begär offert</a>
+      <a href="#" class="form-btn active checkout-btn w-button" @click="summaryClick">Begär Offert</a>
       <div class="b-border mb-50">
         <div class="text-18 mb-10 light">Pris med rot-avdrag</div>
         <div class="h1-banner ml-40 light">{{rotPrice()}} kr</div>
@@ -157,7 +191,7 @@
             </nav>
           </div>
           <div class="text-18 mb-10 light mt-30"><strong>Snickerier.</strong> Skriv in din NCS-kod i fältet under för snickeriet.</div>
-          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.carpentry.ncsCode" placeholder="NCS-kod" id="ncsCode" required>
+          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.carpentry.ncsCode" placeholder="NCS-kod" required>
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.roofSelected">
@@ -191,7 +225,7 @@
             </nav>
           </div>
           <div class="text-18 mb-10 light mt-30"><strong>Tak.</strong> Skriv in din NCS-kod i fältet under för rummet.</div>
-          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.roof.ncsCode" placeholder="NCS-kod" id="ncsCode" required>
+          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.roof.ncsCode" placeholder="NCS-kod" required>
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.floorSelected">
@@ -273,7 +307,7 @@
             </nav>
           </div>
           <div class="text-18 mb-10 light mt-30"><strong>Väggar.</strong> Skriv in din NCS-kod i fältet under för väggarna.</div>
-          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.walls.ncsCode" placeholder="NCS-kod" id="ncsCode" required>
+          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.walls.ncsCode" placeholder="NCS-kod" required>
         </div>
       </div>
     </div>
@@ -281,7 +315,7 @@
       <div class="h1-banner ml-20 light">Addera ett rum.</div>
     </div>
     <div class="form-checkout-section">
-      <a href="#" class="form-btn active checkout-btn w-button" @click="viewSummary = !viewSummary">Slutför beställning</a>
+      <a href="#" class="form-btn active checkout-btn w-button" @click="summaryClick">Slutför beställning</a>
       <div class="b-border mb-50">
         <div class="text-18 mb-10 light">Pris med rot-avdrag</div>
         <div class="h1-banner ml-40 light">{{rotPrice()}} kr</div>
@@ -352,7 +386,12 @@
           roofSelected: false
         }
       ],
-      viewSummary: false
+      viewSummary: false,
+      name: '',
+      address: '',
+      email: '',
+      tel: '',
+      msg: ''
     },
     methods: {
       toggle(i, type) {
@@ -382,6 +421,15 @@
         this.rooms = this.rooms.filter((room, index) => {
           return i != index
         })
+      },
+      summaryClick() {
+        if (!this.viewSummary) {
+          console.log("huisdfhiu")
+          this.viewSummary = !this.viewSummary
+          this.$forceUpdate()
+        } else {
+          this.$refs.submitOffert.click()
+        }
       },
       reloadJs() {
         $(document).off('click')
