@@ -22,43 +22,45 @@
 <body>
   <div class="form-content" id="app">
     <div class="div-block-90"></div>
-    <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form-2"_lpchecked="1" style="display: none;">
-      <div style="display: flex; justify-content: space-between;">
-        <input style="max-width: 45%;" type="text" autocomplete="name" class="text-field-3 w-input" autofocus="true" maxlength="256" name="Namn" data-name="Namn" placeholder="Namn" id="Namn" required="" :value="name">
-        <input style="max-width: 45%;" type="text" autocomplete="street-address" class="text-field-3 w-input" maxlength="256" name="Gatuadress" data-name="Gatuadress" placeholder="Gatuadress" id="Gatuadress" required="" :value="address">
-      </div>
-      <div style="display: flex; justify-content: space-between;">
-        <input style="max-width: 45%;" type="email" autocomplete="email" class="text-field-3 w-input" maxlength="256" name="Mailadress" data-name="Mailadress" placeholder="Mailadress" id="Mailadress" required="" :value="email">
-        <input style="max-width: 45%;" type="tel" autocomplete="tel" class="text-field-3 w-input" maxlength="256" name="Telefonummer" data-name="Telefonummer" placeholder="Telefonummer" id="Telefonummer" required="" :value="tel">
-      </div>
-      <textarea placeholder="Meddelande" maxlength="5000" id="Meddelande" name="Meddelande" data-name="Meddelande" class="text-field-3 meddelande w-input" :value="msg"></textarea>
-      <div v-for="(room, i) in rooms" :key="i">
-        <div v-if="room.floorSelected">
-          <input type="hidden" value="room.floor.selectedSize" id="FloorSize" name="Golv Storlek" data-name="Golv Storlek" class="w-input text-field-3">
-          <input type="hidden" value="room.floor.selectedFloorTreatment" id="FloorTreatment" name="Behandling av golv" data-name="Behandling av golv" class="w-input text-field-3">
-          <input type="hidden" value="room.floor.doorAmount" id="DoorAmount" name="Mängd Dörrar" data-name="Mängd Dörrar" class="w-input text-field-3">
+    <div class="w-form">
+      <form id="email-form" name="email-form" data-name="Email Form" method="POST" class="form-2" _lpchecked="1" style="display: none;">
+        <div style="display: flex; justify-content: space-between;">
+          <input style="max-width: 45%;" type="text" autocomplete="name" class="text-field-3 w-input" autofocus="true" maxlength="256" name="Namn" data-name="Namn" placeholder="Namn" id="Namn" required="" :value="name">
+          <input style="max-width: 45%;" type="text" autocomplete="street-address" class="text-field-3 w-input" maxlength="256" name="Gatuadress" data-name="Gatuadress" placeholder="Gatuadress" id="Gatuadress" required="" :value="address">
         </div>
-        <div v-if="room.carpentrySelected">
-          <input type="hidden" value="room.carpentry.selectedFloorSize" id="FloorSizecarpentry" name="Golv Storlek" data-name="Golv Storlek" class="w-input text-field-3">
-          <input type="hidden" value="room.carpentry.ncsCode" id="ncsCodecarpentry" name="NCS Kod" data-name="NCS Kod" class="w-input text-field-3">
-          <input type="hidden" value="room.carpentry.selectedDoorWindowAmount" id="DoorWindowAmount" name="Mängd Dörrar och Fönster" data-name="Mängd Dörrar och Fönster" class="w-input text-field-3">
-          <input type="hidden" value="room.carpentry.selectedSize" id="Height" name="Höjd på Snickeriet" data-name="Höjd på Snickeriet" class="w-input text-field-3">
+        <div style="display: flex; justify-content: space-between;">
+          <input style="max-width: 45%;" type="email" autocomplete="email" class="text-field-3 w-input" maxlength="256" name="Mailadress" data-name="Mailadress" placeholder="Mailadress" id="Mailadress" required="" :value="email">
+          <input style="max-width: 45%;" type="tel" autocomplete="tel" class="text-field-3 w-input" maxlength="256" name="Telefonummer" data-name="Telefonummer" placeholder="Telefonummer" id="Telefonummer" required="" :value="tel">
         </div>
-        <div v-if="room.roofSelected">
-          <input type="hidden" value="room.roof.selectedSize" id="FloorSizeroof" name="Tak Storlek" data-name="Tak Storlek" class="w-input text-field-3">
-          <input type="hidden" value="room.roof.selectedLevelOfPuttyKnife" id="LevelOfPuttyKnife" name="Mängd Spackel" data-name="Mängd Spackel" class="w-input text-field-3">
-          <input type="hidden" value="room.roof.ncsCode" id="ncsCoderoof" name="NCS Kod" data-name="NCS Kod" class="w-input text-field-3">
+        <textarea placeholder="Meddelande" maxlength="5000" id="Meddelande" name="Meddelande" data-name="Meddelande" class="text-field-3 meddelande w-input" :value="msg"></textarea>
+        <div v-for="(room, i) in rooms" :key="i">
+          <div v-if="room.floorSelected">
+            <input type="hidden" :value="room.floor.selectedSize" id="GolvStorlek" name="GolvStorlek" data-name="GolvStorlek" class="w-input text-field-3">
+            <input type="hidden" :value="room.floor.selectedFloorTreatment" id="BehandlingAvGolv" name="BehandlingAvGolv" data-name="BehandlingAvGolv" class="w-input text-field-3">
+            <input type="hidden" :value="room.floor.doorAmount" id="MängdDörrar" name="MängdDörrar" data-name="MängdDörrar" class="w-input text-field-3">
+          </div>
+          <div v-if="room.carpentrySelected">
+            <input type="hidden" :value="room.carpentry.selectedFloorSize" id="GolvStorlekSnickeri" name="GolvStorlekSnickeri" data-name="GolvStorlekSnickeri" class="w-input text-field-3">
+            <input type="hidden" :value="room.carpentry.ncsCode" id="NCSKodSnickeri" name="NCSKodSnickeri" data-name="NCSKodSnickeri" class="w-input text-field-3">
+            <input type="hidden" :value="room.carpentry.selectedDoorWindowAmount" id="DörrarOchFönster" name="DörrarOchFönster" data-name="DörrarOchFönster" class="w-input text-field-3">
+            <input type="hidden" :value="room.carpentry.selectedSize" id="HöjdPåSnickeriet" name="HöjdPåSnickeriet" data-name="HöjdPåSnickeriet" class="w-input text-field-3">
+          </div>
+          <div v-if="room.roofSelected">
+            <input type="hidden" :value="room.roof.selectedSize" id="TakStorlek" name="TakStorlek" data-name="TakStorlek" class="w-input text-field-3">
+            <input type="hidden" :value="room.roof.selectedLevelOfPuttyKnife" id="MängdSpackel" name="MängdSpackel" data-name="MängdSpackel" class="w-input text-field-3">
+            <input type="hidden" :value="room.roof.ncsCode" id="NCSKodTak" name="NCSKodTak" data-name="NCSKodTak" class="w-input text-field-3">
+          </div>
+          <div v-if="room.wallsSelected">
+            <input type="hidden" :value="room.walls.selectedFloorSize" id="RumStorlek" name="RumStorlek" data-name="RumStorlek" class="w-input text-field-3">
+            <input type="hidden" :value="room.walls.selectedHeight" id="HöjdPåVäggarna" name="HöjdPåVäggarna" data-name="HöjdPåVäggarna" class="w-input text-field-3">
+            <input type="hidden" :value="room.walls.selectedLevelOfPuttyKnife" id="MängdSpackelVäggar" name="MängdSpackelVäggar" data-name="MängdSpackelVäggar" class="w-input text-field-3">
+            <input type="hidden" :value="room.walls.ncsCode" id="NCSKodVäggar" name="NCSKodVäggar" data-name="NCSKodVäggar" class="w-input text-field-3">
+          </div>
         </div>
-        <div v-if="room.wallsSelected">
-          <input type="hidden" value="room.walls.selectedFloorSize" id="FloorSizewalls" name="Golv Storlek" data-name="Golv Storlek" class="w-input text-field-3">
-          <input type="hidden" value="room.walls.selectedHeight" id="Height" name="Höjd på väggarna" data-name="Höjd på väggarna" class="w-input text-field-3">
-          <input type="hidden" value="room.walls.selectedLevelOfPuttyKnife" id="LevelOfPuttyKnife" name="Mängd Spackel" data-name="Mängd Spackel" class="w-input text-field-3">
-          <input type="hidden" value="room.walls.ncsCode" id="ncsCodewalls" name="NCS Kod" data-name="NCS Kod" class="w-input text-field-3">
-        </div>
-      </div>
-      <input type="hidden" value="rotPrice()" id="price" name="Pris" data-name="Pris" class="w-input text-field-3">
-      <input type="submit" value="Submit" data-wait="Please wait..." class="w-button" ref="submitOffert">
-    </form>
+        <input type="hidden" :value="rotPrice()" id="RotPris" name="RotPris" data-name="RotPris" class="w-input text-field-3">
+        <input type="submit" value="Submit" data-wait="Please wait..." class="w-button" ref="submitOffert">
+      </form>
+    </div>
     <div class="form-wrapper" v-if="viewSummary">
       <div class="p-100 b-border">
         <div class="form-header-wrapper" style="flex-direction: column; margin-bottom: 0;">
