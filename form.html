@@ -449,12 +449,12 @@
         } else {
           this.$refs.submitOffert.click()
           let counter = 0
+          const that = this
           const interval = setInterval(func, 500);
           function func() {
-            console.log($('#app'))
             if ($('#successMessage').is(':visible')) {
-              this.orderDone = true
-              this.$forceUpdate()
+              that.orderDone = true
+              that.$forceUpdate()
               clearInterval(interval)
             } else if (counter >= 100) {
               clearInterval(interval)
