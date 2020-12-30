@@ -33,6 +33,16 @@
               alt="" 
               style="-webkit-filter: invert(100%); filter: invert(100%); margin-right: 1rem; cursor: pointer;"
               @click.prevent="viewSummary = !viewSummary"
+              v-if="!orderDone"
+            >
+            <img 
+              src="images/arrow-left.svg" 
+              loading="lazy" 
+              width="36" 
+              alt="" 
+              style="-webkit-filter: invert(100%); filter: invert(100%); margin-right: 1rem; cursor: pointer;"
+              @click.prevent="resetClick"
+              v-else
             >
             <h2 class="text-18" style="margin-bottom: 20px;">Ändra uppgifter</h2>
             <img src="images/cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" style="margin-left: auto;" class="image-4">
@@ -148,7 +158,8 @@
         </div>
       </div>
       <div class="form-checkout-section">
-        <a href="#" class="form-btn active checkout-btn w-button" @click.prevent="summaryClick">Begär Offert</a>
+        <a href="#" class="form-btn active checkout-btn w-button" @click.prevent="summaryClick" v-if="!orderDone">Begär Offert</a>
+        <a href="#" class="form-btn active checkout-btn w-button" @click.prevent="resetClick" v-else>Starta en Ny Order</a>
         <div class="b-border mb-50">
           <div class="text-18 mb-10 light">Pris med rot-avdrag</div>
           <div class="h1-banner ml-40 light">{{rotPrice()}} kr</div>
@@ -424,7 +435,8 @@
         address: '',
         email: '',
         tel: '',
-        msg: ''
+        msg: '',
+        orderDone: false
       },
       methods: {
         toggle(i, type) {
@@ -463,9 +475,27 @@
             this.$refs.submitOffert.click()
           }
         },
+        resetClick() {
+          this.rooms = [
+            {
+              carpentrySelected: false,
+              wallsSelected: false,
+              floorSelected: false,
+              roofSelected: false
+            }
+          ]
+          this.name = ''
+          this.msg = ''
+          this.address = ''
+          this.tel = ''
+          this.email = ''
+          this.viewSummary = false
+          this.orderDone = false
+        },
         reloadJs() {
           $(document).off('click')
           $('.w-dropdown').off('click')
+          $('w-form-done').off('style')
           $('.w-dropdown').click(function(event) {
             $('.w-dropdown').each((i, dom) => {
               $(dom).children().last().removeClass('w--open')
@@ -481,6 +511,11 @@
                 $(dom).children().last().removeClass('w--open')
               })
             }            
+          })
+          $('w-form-done').on('style', function(e) {
+            if ($(this).is(':visible')) {
+              this.orderDone = true
+            }
           })
         },
         selectSize(i, s, type) {
