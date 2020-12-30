@@ -569,6 +569,8 @@
         this.$nextTick(function() {
           if ($('#successMessage').is(':visible')) {
             this.orderDone = true
+            console.log("synlig")
+            this.$forceUpdate()
           }
         })
       }
