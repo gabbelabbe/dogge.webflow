@@ -4,18 +4,17 @@
   <div class="form-wrapper" v-show="viewSummary">
     <div class="p-100 b-border">
       <div class="form-header-wrapper" style="flex-direction: column; margin-bottom: 0;">
-        <div style="display: flex;">
+        <div style="display: flex; width: 100%;">
           <img 
             src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e85c362fb3c60a93b_arrow-left.svg" 
             loading="lazy" 
             width="36" 
-            data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" 
             alt="" 
-            class="image-4" 
-            style="-webkit-filter: invert(100%); filter: invert(100%); margin-right: 1rem;"
-            @click="viewSummary = !viewSummary"
+            style="-webkit-filter: invert(100%); filter: invert(100%); margin-right: 1rem; cursor: pointer;"
+            @click.prevent="viewSummary = !viewSummary"
           >
           <h2 class="text-18" style="margin-bottom: 20px;">Ändra uppgifter</h2>
+          <img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f89a0aadeba3b0aebe9c120_cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" style="margin-left: auto;" class="image-4">
         </div>
         <h2 class="form-header" style="margin-bottom: 40px;">Ange dina uppgifter för att fullfölja beställningen.</h2>
         <div class="w-form">
@@ -31,31 +30,37 @@
             <textarea placeholder="Meddelande" maxlength="5000" id="Meddelande" name="Meddelande" data-name="Meddelande" class="text-field-3 meddelande w-input" :value="msg"></textarea>
             <div v-for="(room, i) in rooms" :key="i">
               <div v-if="room.floorSelected">
-                <input type="hidden" :value="room.floor.selectedSize" id="GolvStorlek" name="GolvStorlek" data-name="GolvStorlek" class="w-input text-field-3">
-                <input type="hidden" :value="room.floor.selectedFloorTreatment" id="BehandlingAvGolv" name="BehandlingAvGolv" data-name="BehandlingAvGolv" class="w-input text-field-3">
-                <input type="hidden" :value="room.floor.doorAmount" id="MängdDörrar" name="MängdDörrar" data-name="MängdDörrar" class="w-input text-field-3">
+                <input type="hidden" :value="room.floor.selectedSize" :id="'GolvStorlek' + 'Rum' + i" :name="'GolvStorlek' + 'Rum' + i" :data-name="'GolvStorlek' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.floor.selectedFloorTreatment" :id="'BehandlingAvGolv' + 'Rum' + i" :name="'BehandlingAvGolv' + 'Rum' + i" :data-name="'BehandlingAvGolv' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.floor.doorAmount" :id="'MängdDörrar' + 'Rum' + i" :name="'MängdDörrar' + 'Rum' + i" :data-name="'MängdDörrar' + 'Rum' + i" class="w-input text-field-3">
               </div>
               <div v-if="room.carpentrySelected">
-                <input type="hidden" :value="room.carpentry.selectedFloorSize" id="GolvStorlekSnickeri" name="GolvStorlekSnickeri" data-name="GolvStorlekSnickeri" class="w-input text-field-3">
-                <input type="hidden" :value="room.carpentry.ncsCode" id="NCSKodSnickeri" name="NCSKodSnickeri" data-name="NCSKodSnickeri" class="w-input text-field-3">
-                <input type="hidden" :value="room.carpentry.selectedDoorWindowAmount" id="DörrarOchFönster" name="DörrarOchFönster" data-name="DörrarOchFönster" class="w-input text-field-3">
-                <input type="hidden" :value="room.carpentry.selectedSize" id="HöjdPåSnickeriet" name="HöjdPåSnickeriet" data-name="HöjdPåSnickeriet" class="w-input text-field-3">
+                <input type="hidden" :value="room.carpentry.selectedFloorSize" :id="'GolvStorlekSnickeri' + 'Rum' + i" :name="'GolvStorlekSnickeri' + 'Rum' + i" :data-name="'GolvStorlekSnickeri' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.carpentry.ncsCode" :id="'NCSKodSnickeri' + 'Rum' + i" :name="'NCSKodSnickeri' + 'Rum' + i" :data-name="'NCSKodSnickeri' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.carpentry.selectedDoorWindowAmount" :id="'DörrarOchFönster' + 'Rum' + i" :name="'DörrarOchFönster' + 'Rum' + i" :data-name="'DörrarOchFönster' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.carpentry.selectedSize" :id="'HöjdPåSnickeriet' + 'Rum' + i" :name="'HöjdPåSnickeriet' + 'Rum' + i" :data-name="'HöjdPåSnickeriet' + 'Rum' + i" class="w-input text-field-3">
               </div>
               <div v-if="room.roofSelected">
-                <input type="hidden" :value="room.roof.selectedSize" id="TakStorlek" name="TakStorlek" data-name="TakStorlek" class="w-input text-field-3">
-                <input type="hidden" :value="room.roof.selectedLevelOfPuttyKnife" id="MängdSpackel" name="MängdSpackel" data-name="MängdSpackel" class="w-input text-field-3">
-                <input type="hidden" :value="room.roof.ncsCode" id="NCSKodTak" name="NCSKodTak" data-name="NCSKodTak" class="w-input text-field-3">
+                <input type="hidden" :value="room.roof.selectedSize" :id="'TakStorlek' + 'Rum' + i" :name="'TakStorlek' + 'Rum' + i" :data-name="'TakStorlek' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.roof.selectedLevelOfPuttyKnife" :id="'MängdSpackel' + 'Rum' + i" :name="'MängdSpackel' + 'Rum' + i" :data-name="'MängdSpackel' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.roof.ncsCode" :id="'NCSKodTak' + 'Rum' + i" :name="'NCSKodTak' + 'Rum' + i" :data-name="'NCSKodTak' + 'Rum' + i" class="w-input text-field-3">
               </div>
               <div v-if="room.wallsSelected">
-                <input type="hidden" :value="room.walls.selectedFloorSize" id="RumStorlek" name="RumStorlek" data-name="RumStorlek" class="w-input text-field-3">
-                <input type="hidden" :value="room.walls.selectedHeight" id="HöjdPåVäggarna" name="HöjdPåVäggarna" data-name="HöjdPåVäggarna" class="w-input text-field-3">
-                <input type="hidden" :value="room.walls.selectedLevelOfPuttyKnife" id="MängdSpackelVäggar" name="MängdSpackelVäggar" data-name="MängdSpackelVäggar" class="w-input text-field-3">
-                <input type="hidden" :value="room.walls.ncsCode" id="NCSKodVäggar" name="NCSKodVäggar" data-name="NCSKodVäggar" class="w-input text-field-3">
+                <input type="hidden" :value="room.walls.selectedFloorSize" :id="'RumStorlek' + 'Rum' + i" :name="'RumStorlek' + 'Rum' + i" :data-name="'RumStorlek' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.walls.selectedHeight" :id="'HöjdPåVäggarna' + 'Rum' + i" :name="'HöjdPåVäggarna' + 'Rum' + i" :data-name="'HöjdPåVäggarna' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.walls.selectedLevelOfPuttyKnife" :id="'MängdSpackelVäggar' + 'Rum' + i" :name="'MängdSpackelVäggar' + 'Rum' + i" :data-name="'MängdSpackelVäggar' + 'Rum' + i" class="w-input text-field-3">
+                <input type="hidden" :value="room.walls.ncsCode" :id="'NCSKodVäggar' + 'Rum' + i" :name="'NCSKodVäggar' + 'Rum' + i" :data-name="'NCSKodVäggar' + 'Rum' + i" class="w-input text-field-3">
               </div>
             </div>
             <input type="hidden" :value="rotPrice()" id="RotPris" name="RotPris" data-name="RotPris" class="w-input text-field-3">
-            <input type="submit" value="Submit" data-wait="Please wait..." @click="console.log(tjaba)" class="w-button" ref="submitOffert" style="display: none;">
+            <input type="submit" value="Submit" data-wait="Please wait..." class="w-button" ref="submitOffert" style="display: none;">
           </form>
+          <div class="success-message w-form-done">
+            <div class="text-block-3 h2-jumbo left">Tack för din beställning. Vi kontaktar dig inom kort för att bekräfta beställningen.</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -68,61 +73,61 @@
 
         <div class="form-section-wrapper" v-if="room.carpentrySelected">
           <div class="text-18 mb-10 light"><strong>Snickerier. </strong>Antal dörrar och fönster, höjd på snickeriet i cm och kvadratmeter golv.</div>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedDoorWindowAmount}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedDoorWindowAmount}" v-if="room.carpentry.selectedDoorWindowAmount">
             {{room.carpentry.selectedDoorWindowAmount ? room.carpentry.selectedDoorWindowAmount : 'Antal dörrar och Fönster'}}
           </a>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedSize}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedSize}" v-if="room.carpentry.selectedSize">
             {{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'Höjd på snickeri i'}} cm
           </a>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedFloorSize}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedFloorSize}" v-if="room.carpentry.selectedFloorSize">
             {{room.carpentry.selectedFloorSize ? room.carpentry.selectedFloorSize + ' kvm' : 'Kvadratmeter Golv'}}
           </a>
-          <div class="text-18 mb-10 light mt-30"><strong>Snickerier.</strong> NCS-kod för färgen i rummet.</div>
-          <h2 class="text-20-2">{{room.carpentry.ncsCode}}</h2>
+          <div class="text-18 mb-10 light mt-30" v-if="room.carpentry.ncsCode"><strong>Snickerier.</strong> NCS-kod för färgen i rummet.</div>
+          <h2 class="text-20-2" v-if="room.carpentry.ncsCode">{{room.carpentry.ncsCode}}</h2>
         </div>
 
         <div class="form-section-wrapper" v-if="room.roofSelected">
           <div class="text-18 mb-10 light"><strong>Tak. </strong>Nivå av spackel och kvadratmeter golv.</div>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.roof.selectedLevelOfPuttyKnife}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.roof.selectedLevelOfPuttyKnife}" v-if="room.roof.selectedLevelOfPuttyKnife">
             {{room.roof.selectedLevelOfPuttyKnife ? room.roof.selectedLevelOfPuttyKnife : 'Nivå av spackel'}}
           </a>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.roof.selectedSize}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.roof.selectedSize}" v-if="room.roof.selectedSize">
             {{room.roof.selectedSize ? room.roof.selectedSize + ' kvm' : 'Kvadratmeter Golv'}}
           </a>
-          <div class="text-18 mb-10 light mt-30"><strong>Tak.</strong> NCS-kod för färgen i rummet.</div>
-          <h2 class="text-20-2">{{room.roof.ncsCode}}</h2>
+          <div class="text-18 mb-10 light mt-30" v-if="room.roof.ncsCode"><strong>Tak.</strong> NCS-kod för färgen i rummet.</div>
+          <h2 class="text-20-2" v-if="room.roof.ncsCode">{{room.roof.ncsCode}}</h2>
         </div>
 
         <div class="form-section-wrapper" v-if="room.floorSelected">
           <div class="text-18 mb-10 light"><strong>Golv.</strong> Antal trösklar i rummet och kvadratmeter golv.</div>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.doorAmount}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.doorAmount}" v-if="room.floor.doorAmount">
             {{room.floor.doorAmount ? room.floor.doorAmount + ' Trösklar' : 'Antal Trösklar'}}
           </a>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.selectedSize}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.selectedSize}" v-if="room.floor.selectedSize">
             {{room.floor.selectedSize ? room.floor.selectedSize + ' kvm' : 'Kvadratmeter Golv'}}
           </a>
-          <div class="text-18 mb-10 light mt-30"><strong>Golv.</strong> Slipning med hårdvaxolja ikluderat.</div>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.selectedFloorTreatment}">Slipning med Hårdvaxolja</a>
+          <div class="text-18 mb-10 light mt-30" v-if="room.floor.selectedFloorTreatment"><strong>Golv.</strong> Slipning med hårdvaxolja ikluderat.</div>
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.selectedFloorTreatment}" v-if="room.floor.selectedFloorTreatment">Slipning med Hårdvaxolja</a>
         </div>
 
         <div class="form-section-wrapper" v-if="room.wallsSelected">
           <div class="text-18 mb-10 light"><strong>Väggar. </strong>Kvadratmeter golv, mängd spackel och takhöjden i meter.</div>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.walls.selectedFloorSize}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.walls.selectedFloorSize}" v-if="room.walls.selectedFloorSize">
             {{room.walls.selectedFloorSize ? room.walls.selectedFloorSize + ' kvm' : 'Kvadratmeter golv'}}
           </a>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.walls.selectedLevelOfPuttyKnife}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.walls.selectedLevelOfPuttyKnife}" v-if="room.walls.selectedLevelOfPuttyKnife">
             {{room.walls.selectedLevelOfPuttyKnife ? room.walls.selectedLevelOfPuttyKnife : 'Nivå av spackel'}}
           </a>
-          <a href="#" class="form-btn w-button" v-bind:class="{active: room.walls.selectedHeight}">
+          <a href="#" class="form-btn w-button" v-bind:class="{active: room.walls.selectedHeight}" v-if="room.walls.selectedHeight">
             {{room.walls.selectedHeight ? room.walls.selectedHeight + ' m' : 'Takhöjd'}}
           </a>
-          <div class="text-18 mb-10 light mt-30"><strong>Väggar.</strong> NCS-kod för färgen i rummet.</div>
-          <h2 class="text-20-2">{{room.walls.ncsCode}}</h2>
+          <div class="text-18 mb-10 light mt-30" v-if="room.walls.ncsCode"><strong>Väggar.</strong> NCS-kod för färgen i rummet.</div>
+          <h2 class="text-20-2" v-if="room.walls.ncsCode">{{room.walls.ncsCode}}</h2>
         </div>
       </div>
     </div>
     <div class="form-checkout-section">
-      <a href="#" class="form-btn active checkout-btn w-button" @click="summaryClick">Begär Offert</a>
+      <a href="#" class="form-btn active checkout-btn w-button" @click.prevent="summaryClick">Begär Offert</a>
       <div class="b-border mb-50">
         <div class="text-18 mb-10 light">Pris med rot-avdrag</div>
         <div class="h1-banner ml-40 light">{{rotPrice()}} kr</div>
@@ -162,6 +167,7 @@
               <div class="text-block-4">{{room.carpentry.selectedDoorWindowAmount ? room.carpentry.selectedDoorWindowAmount : 'Antal dörrar och Fönster'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.carpentry.selectedDoorWindowAmount = ''; $forceUpdate();">Antal dörrar och Fönster</a>
               <a v-for="i in 10" @click="room.carpentry.selectedDoorWindowAmount = i; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{i}}</a>
             </nav>
           </div>
@@ -171,6 +177,7 @@
               <div class="text-block-4">{{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'Höjd på snickeri i'}} cm</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.carpentry.selectedSize = ''; $forceUpdate();">Höjd på snicjer i</a>
               <a v-for="s in carpentry.sizes" @click="room.carpentry.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
             </nav>
           </div>
@@ -180,11 +187,12 @@
               <div class="text-block-4">{{room.carpentry.selectedFloorSize ? room.carpentry.selectedFloorSize + ' kvm' : 'Kvadratmeter Golv'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.carpentry.selectedFloorSize = ''; $forceUpdate();">Kvadratmeter Golv</a>
               <a v-for="s in floor.sizes" @click="room.carpentry.selectedFloorSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
             </nav>
           </div>
           <div class="text-18 mb-10 light mt-30"><strong>Snickerier.</strong> Skriv in din NCS-kod i fältet under för snickeriet.</div>
-          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.carpentry.ncsCode" placeholder="NCS-kod" required>
+          <input type="text" style="border: none; border-bottom: 1px solid black; min-height: 0; padding: 0!important; margin-bottom: 0; max-width: 200px; border-radius: unset;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.carpentry.ncsCode" placeholder="NCS-kod" required>
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.roofSelected">
@@ -205,6 +213,7 @@
               <div class="text-block-4">{{room.roof.selectedLevelOfPuttyKnife ? room.roof.selectedLevelOfPuttyKnife : 'Nivå av spackel'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.roof.selectedLevelOfPuttyKnife = ''; $forceUpdate();">Nivå av Spackel</a>
               <a v-for="pk in walls.levelOfPuttyKnife" @click="room.roof.selectedLevelOfPuttyKnife = pk; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{pk}}</a>
             </nav>
           </div>
@@ -214,11 +223,12 @@
               <div class="text-block-4">{{room.roof.selectedSize ? room.roof.selectedSize + ' kvm' : 'Kvadratmeter Golv'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.roof.selectedDoorWindowAmount = ''; $forceUpdate();">Kvadratmeter Golv</a>
               <a v-for="s in floor.sizes" @click="room.roof.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
             </nav>
           </div>
           <div class="text-18 mb-10 light mt-30"><strong>Tak.</strong> Skriv in din NCS-kod i fältet under för rummet.</div>
-          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.roof.ncsCode" placeholder="NCS-kod" required>
+          <input type="text" style="border: none; border-bottom: 1px solid black; min-height: 0; padding: 0!important; margin-bottom: 0; max-width: 200px; border-radius: unset;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.roof.ncsCode" placeholder="NCS-kod" required>
         </div>
       </div>
       <div class="p-100 b-border" v-if="room.floorSelected">
@@ -244,6 +254,7 @@
               <div class="text-block-4">{{room.floor.doorAmount ? room.floor.doorAmount : 'Antal Trösklar'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.floor.doorAmount = ''; $forceUpdate();">Antal Trösklar</a>
               <a v-for="i in 5" @click="room.floor.doorAmount = i; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{i}}</a>
             </nav>
           </div>
@@ -253,6 +264,7 @@
               <div class="text-block-4">{{room.floor.selectedSize ? room.floor.selectedSize + ' kvm' : 'Kvadratmeter Golv'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.floor.selectedSize = ''; $forceUpdate();">Kvadratmeter Golv</a>
               <a v-for="s in room.floor.sizes" @click="room.floor.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
             </nav>
           </div>
@@ -278,6 +290,7 @@
               <div class="text-block-4">{{room.walls.selectedFloorSize ? room.walls.selectedFloorSize + ' kvm' : 'Kvadratmeter golv'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.walls.selectedFloorSize = ''; $forceUpdate();">Kvadratmeter golv</a>
               <a v-for="s in floor.sizes" @click="room.walls.selectedFloorSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link" tabindex="0">{{s}}</a>
             </nav>
           </div>
@@ -287,6 +300,7 @@
               <div class="text-block-4">{{room.walls.selectedLevelOfPuttyKnife ? room.walls.selectedLevelOfPuttyKnife : 'Nivå av spackel'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.walls.selectedLevelOfPuttyKnife = ''; $forceUpdate();">Nivå av spackel</a>
               <a v-for="pk in walls.levelOfPuttyKnife" @click="room.walls.selectedLevelOfPuttyKnife = pk; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{pk}}</a>
             </nav>
           </div>
@@ -296,11 +310,12 @@
               <div class="text-block-4">{{room.walls.selectedHeight ? room.walls.selectedHeight + ' m' : 'Takhöjd'}}</div>
             </div>
             <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+              <a href="#" class="dropdown-link w-dropdown-link" @click="room.walls.selectedHeight = ''; $forceUpdate();">Takhöjd</a>
               <a v-for="h in walls.height" @click="room.walls.selectedHeight = h; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{h}}</a>
             </nav>
           </div>
           <div class="text-18 mb-10 light mt-30"><strong>Väggar.</strong> Skriv in din NCS-kod i fältet under för väggarna.</div>
-          <input type="text" style="border: none; max-width: 200px;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.walls.ncsCode" placeholder="NCS-kod" required>
+          <input type="text" style="border: none; border-bottom: 1px solid black; min-height: 0; padding: 0!important; margin-bottom: 0; max-width: 200px; border-radius: unset;" class="text-field-3 w-input" maxlength="256" name="ncsCode" data-name="ncsCode" v-model="room.walls.ncsCode" placeholder="NCS-kod" required>
         </div>
       </div>
     </div>
@@ -417,7 +432,6 @@
       },
       summaryClick() {
         if (!this.viewSummary) {
-          console.log("huisdfhiu")
           this.viewSummary = !this.viewSummary
           this.$forceUpdate()
         } else {
@@ -427,11 +441,13 @@
       reloadJs() {
         $(document).off('click')
         $('.w-dropdown').off('click')
-        $('.w-dropdown').click(function() {
+        $('.w-dropdown').click(function(event) {
           $('.w-dropdown').each((i, dom) => {
             $(dom).children().last().removeClass('w--open')
           })
-          $(this).children().last().toggleClass('w--open')
+          if (!$(event.target).hasClass('w-dropdown-link')) {
+            $(this).children().last().toggleClass('w--open')
+          }
         })
         $(document).on("click", function(event){
           var $trigger = $(".w-dropdown")
@@ -449,8 +465,8 @@
         let cPrice = 0, fPrice = 0, wPrice = 0, rPrice = 0
         this.rooms.forEach(room => {
           if (room.carpentrySelected) {
-            let size = room.carpentry.selectedSize ? parseInt(room.carpentry.selectedSize) + 20 : 0
-            let fSize = room.carpentry.selectedFloorSize ? parseInt(room.carpentry.selectedFloorSize) + 5 : 0
+            let size = room.carpentry.selectedSize ? parseInt(room.carpentry.selectedSize.split('-')[1]) : 0
+            let fSize = room.carpentry.selectedFloorSize ? parseInt(room.carpentry.selectedFloorSize.split('-')[1]) : 0
             let dAmout = room.carpentry.selectedDoorWindowAmount
             let väggLängd1 = Math.sqrt(fSize/1.41)
             let väggLängd2 = väggLängd1*1.41
@@ -459,12 +475,12 @@
           if (room.roofSelected) {
             const spackling = {'': 0, 'Lite': 70, 'Mellan': 120, 'Mycket': 180}
             const spackel = {'': 0, 'Lite': 10, 'Mellan': 20, 'Mycket': 30}
-            let size = room.roof.selectedSize ? parseInt(room.roof.selectedSize) + 5 : 0
+            let size = room.roof.selectedSize ? parseInt(room.roof.selectedSize.split('-')[1]) : 0
             let putty = room.roof.selectedLevelOfPuttyKnife
             rPrice += ((size ? (3000) : (0)) + (size ? (950) : (0)) + size * (110+28+spackel[putty]+spackling[putty]+12))
           }
           if (room.floorSelected) {
-            let size = room.floor.selectedSize ? parseInt(room.floor.selectedSize) + 5 : 0
+            let size = room.floor.selectedSize ? parseInt(room.floor.selectedSize.split('-')[1]) : 0
             let treatment = room.floor.selectedFloorTreatment
             let dAmount = room.floor.doorAmount
             fPrice += ((size ? (3500) : (0)) + size*(treatment ? 300 : 0) + (size/20)*200)
@@ -472,8 +488,8 @@
           if (room.wallsSelected) {
             const spackling = {'': 0, 'Lite': 50, 'Mellan': 100, 'Mycket': 150}
             const spackel = {'': 0, 'Lite': 10, 'Mellan': 20, 'Mycket': 30}
-            let height = room.walls.selectedHeight ? parseInt(room.walls.selectedHeight) + 0.5 : 0
-            let fSize = room.walls.selectedFloorSize ? parseInt(room.walls.selectedFloorSize) + 5 : 0
+            let height = room.walls.selectedHeight ? parseInt(room.walls.selectedHeight.split('-')[1]) : 0
+            let fSize = room.walls.selectedFloorSize ? parseInt(room.walls.selectedFloorSize.split('-')[1]) : 0
             let putty = room.walls.selectedLevelOfPuttyKnife
             let väggLängd1 = Math.sqrt(fSize/1.41)
             let väggLängd2 = väggLängd1*1.41
@@ -495,5 +511,15 @@
         }, 200);
       }
     },
+    created: function() {
+      (function() {
+        var ev = new $.Event('style'),
+            orig = $.fn.css;
+        $.fn.css = function() {
+            $(this).trigger(ev);
+            return orig.apply(this, arguments);
+        }
+      })();
+    }
   })
 </script>
