@@ -145,7 +145,7 @@
       </div>
     </div>
   </div>
-  <div class="form-wrapper" v-show="!viewSummary">
+  <div class="form-wrapper" v-show="!viewSummary" ref="formWrapper">
     <div class="p-100 b-border">
       <div class="form-header-wrapper">
         <h2 class="form-header">Ange information om varje rum som ska renoveras.</h2><img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f89a0aadeba3b0aebe9c120_cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" class="image-4">
@@ -448,6 +448,19 @@
           this.$forceUpdate()
         } else {
           this.$refs.submitOffert.click()
+          let counter = 0
+          const interval = setInterval(func, 500);
+          function func() {
+            console.log($('#app'))
+            if ($('#successMessage').is(':visible')) {
+              this.orderDone = true
+              this.$forceUpdate()
+              clearInterval(interval)
+            } else if (counter >= 100) {
+              clearInterval(interval)
+            }
+            counter++
+          }
         }
       },
       resetClick() {
@@ -540,14 +553,5 @@
         }, 200);
       }
     },
-    updated() {
-      this.$nextTick(function() {
-        if ($('#successMessage').is(':visible')) {
-          this.orderDone = true
-          console.log("synlig")
-          this.$forceUpdate()
-        }
-      })
-    }
   })
 </script>

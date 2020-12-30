@@ -473,6 +473,13 @@
             this.$forceUpdate()
           } else {
             this.$refs.submitOffert.click()
+            const interval = setInterval(func, 500);
+            function func() {
+              if ($('#successMessage').is(':visible')) {
+                alert('heck yea')
+                clearInterval(interval)
+              } 
+            }
           }
         },
         resetClick() {
@@ -565,15 +572,6 @@
           }, 200);
         }
       },
-      updated() {
-        this.$nextTick(function() {
-          if ($('#successMessage').is(':visible')) {
-            this.orderDone = true
-            console.log("synlig")
-            this.$forceUpdate()
-          }
-        })
-      }
     })
   </script>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f884aeb16efaa7d292518f7" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
