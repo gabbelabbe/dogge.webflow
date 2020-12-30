@@ -65,7 +65,7 @@
             <input type="hidden" :value="rotPrice()" id="RotPris" name="RotPris" data-name="RotPris" class="w-input text-field-3">
             <input type="submit" value="Submit" data-wait="Please wait..." class="w-button" ref="submitOffert" style="display: none;">
           </form>
-          <div class="success-message w-form-done" style="position: unset;">
+          <div class="success-message w-form-done" style="position: unset;" id="successMessage">
             <div class="text-block-3 h2-jumbo left" style="position: unset;">Tack för din beställning. Vi kontaktar dig inom kort för att bekräfta beställningen.</div>
           </div>
           <div class="w-form-fail">
@@ -470,7 +470,6 @@
       reloadJs() {
         $(document).off('click')
         $('.w-dropdown').off('click')
-        $('w-form-done').off('style')
         $('.w-dropdown').click(function(event) {
           $('.w-dropdown').each((i, dom) => {
             $(dom).children().last().removeClass('w--open')
@@ -486,11 +485,6 @@
               $(dom).children().last().removeClass('w--open')
             })
           }            
-        })
-        $('w-form-done').on('style', function(e) {
-          if ($(this).is(':visible')) {
-            this.orderDone = true
-          }
         })
       },
       selectSize(i, s, type) {
@@ -546,15 +540,12 @@
         }, 200);
       }
     },
-    created: function() {
-      (function() {
-        var ev = new $.Event('style'),
-            orig = $.fn.css;
-        $.fn.css = function() {
-            $(this).trigger(ev);
-            return orig.apply(this, arguments);
+    updated() {
+      this.$nextTick(function() {
+        if ($('#successMessage').is(':visible')) {
+          this.orderDone = true
         }
-      })();
+      })
     }
   })
 </script>
