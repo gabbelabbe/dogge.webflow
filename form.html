@@ -11,17 +11,8 @@
             width="36" 
             alt="" 
             style="-webkit-filter: invert(100%); filter: invert(100%); margin-right: 1rem; cursor: pointer;"
-            @click.prevent="viewSummary = !viewSummary"
-            v-if="!orderDone"
-          >
-          <img 
-            src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f88536e85c362fb3c60a93b_arrow-left.svg" 
-            loading="lazy" 
-            width="36" 
-            alt="" 
-            style="-webkit-filter: invert(100%); filter: invert(100%); margin-right: 1rem; cursor: pointer;"
             @click.prevent="resetClick"
-            v-else
+            v-if="!orderDone"
           >
           <h2 class="text-18" style="margin-bottom: 20px;">Ändra uppgifter</h2>
           <img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f89a0aadeba3b0aebe9c120_cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" style="margin-left: auto;" class="image-4">
@@ -464,21 +455,27 @@
         }
       },
       resetClick() {
-        this.rooms = [
-          {
-            carpentrySelected: false,
-            wallsSelected: false,
-            floorSelected: false,
-            roofSelected: false
-          }
-        ]
-        this.name = ''
-        this.msg = ''
-        this.address = ''
-        this.tel = ''
-        this.email = ''
-        this.viewSummary = false
-        this.orderDone = false
+        if ($('#email-form').is(':visible')) {
+          this.viewSummary = false
+        } else {
+          this.rooms = [
+            {
+              carpentrySelected: false,
+              wallsSelected: false,
+              floorSelected: false,
+              roofSelected: false
+            }
+          ]
+          this.name = ''
+          this.msg = ''
+          this.address = ''
+          this.tel = ''
+          this.email = ''
+          this.viewSummary = false
+          this.orderDone = false
+          $("#successMessage").css("display", "");
+          $("#email-form").css("display", "");
+        }
       },
       reloadJs() {
         $(document).off('click')
