@@ -480,8 +480,19 @@ a {
   right: 0%;
   bottom: 0%;
   z-index: 999;
-  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   overflow: scroll;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -491,10 +502,22 @@ a {
   top: 0px;
   right: 0px;
   bottom: 0px;
-  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 90%;
   margin: 100px auto;
   padding: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   background-color: #fff;
 }
 
@@ -507,7 +530,7 @@ a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -922,9 +945,7 @@ a {
   bottom: 0%;
   height: 100%;
   padding: 0px;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-  background-color: #17ff60;
+  background-color: #bdfff3;
 }
 
 .column-101 {
@@ -1262,12 +1283,14 @@ a {
 }
 
 .p-100 {
-  padding: 60px 100px;
+  padding: 30px 100px;
 }
 
 .p-100.b-border {
   position: relative;
   display: block;
+  margin-top: -2px;
+  border-top: 2px solid hsla(0, 0%, 93.3%, 0.93);
   border-bottom: 2px solid hsla(0, 0%, 93.3%, 0.93);
   background-color: #fff;
 }
@@ -1306,9 +1329,7 @@ a {
 }
 
 .form-btn.active.select {
-  padding-top: 18px;
-  padding-right: 35px;
-  padding-bottom: 18px;
+  border-style: solid;
 }
 
 .form-btn.active.set-width {
@@ -1458,7 +1479,7 @@ a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 100px;
+  margin-bottom: 0px;
   padding: 25px 100px;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -1485,6 +1506,10 @@ a {
 
 .form-section-wrapper {
   width: 50%;
+}
+
+.dropdown-3 {
+  display: inline-block;
 }
 
 .link-3 {
@@ -1570,6 +1595,27 @@ a {
 
 .image-5 {
   cursor: pointer;
+}
+
+.close-box {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+}
+
+.text-30 {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.text-30.margin_bot {
+  margin-bottom: 20px;
+}
+
+.div-block-90 {
+  height: 500px;
 }
 
 @media screen and (max-width: 991px) {
@@ -1661,6 +1707,10 @@ a {
     width: auto;
   }
 
+  .text-block-3.h2-jumbo.left {
+    position: static;
+  }
+
   .accordion-wrapper {
     width: 100%;
   }
@@ -1679,10 +1729,8 @@ a {
   }
 
   .success-message {
+    position: relative;
     height: auto;
-    min-height: 500px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 100px;
   }
 
   .column-101 {
@@ -2145,9 +2193,14 @@ a {
     font-size: 22px;
   }
 
+  .form-content {
+    display: none;
+    padding-bottom: 0px;
+  }
+
   .form-header-wrapper {
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
   }
 
   .navlink-line-wrapper {
@@ -2271,6 +2324,14 @@ a {
     padding-left: 0px;
   }
 
+  .p-100 {
+    padding: 10px 15px;
+  }
+
+  .p-100.b-border {
+    padding: 10px;
+  }
+
   .p-100.white.flex-center {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -2289,11 +2350,13 @@ a {
   .form-btn.active.checkout-btn {
     width: auto;
     margin-top: 10px;
+    margin-right: 0px;
     margin-bottom: 0px;
   }
 
   .form-checkout-section {
-    position: relative;
+    position: -webkit-sticky;
+    position: sticky;
     bottom: 0px;
     padding-top: 15px;
     padding-right: 16px;
@@ -2303,10 +2366,10 @@ a {
     -webkit-flex-direction: column-reverse;
     -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
   }
 
   .b-border.mb-50 {
@@ -2322,8 +2385,9 @@ a {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;

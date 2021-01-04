@@ -184,6 +184,7 @@
             <div class="slide-nav-2 w-slider-nav w-round"></div>
           </div>
           <div class="form-section-wrapper">
+            <div class="text-30 margin_bot"><b>Snickerier</b></div>
             <div class="text-18 mb-10 light"><strong>Snickerier. </strong>Ange information om snickeriet i rummet.</div>
             <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.carpentry.selectedDoorWindowAmount}">
@@ -231,6 +232,7 @@
             <div class="slide-nav-2 w-slider-nav w-round"></div>
           </div>
           <div class="form-section-wrapper">
+            <div class="text-30 margin_bot"><b>Tak</b></div>
             <div class="text-18 mb-10 light"><strong>Tak. </strong>Ange information om taket i rummet.</div>
             <div data-hover="" data-delay="0" class="dropdown-3 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.roof.selectedLevelOfPuttyKnife}">
@@ -273,6 +275,7 @@
             <div class="slide-nav-2 w-slider-nav w-round"></div>
           </div>
           <div class="form-section-wrapper">
+            <div class="text-30 margin_bot"><b>Golv</b></div>
             <div class="text-18 mb-10 light"><strong>Golv.</strong> Ange information om golvet i rummet.</div>
             <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.floor.doorAmount}">
@@ -294,8 +297,17 @@
                 <a v-for="s in room.floor.sizes" @click="room.floor.selectedSize = s; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{s}}</a>
               </nav>
             </div>
-            <div class="text-18 mb-10 light mt-30"><strong>Golv.</strong> Tryck för att ange om du vill ha slipning med hårdvaxolja.</div>
-            <a href="#" class="form-btn w-button" v-bind:class="{active: room.floor.selectedFloorTreatment}" @click="room.floor.selectedFloorTreatment = !room.floor.selectedFloorTreatment; $forceUpdate();">Slipning med Hårdvaxolja</a>
+            <div class="text-18 mb-10 light mt-30"><strong>Golv.</strong> Tryck för att ange vilken färg du vill ha på hårdvaxolja.</div>
+            <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown" style="z-index: unset;">
+              <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.floor.selectedFloorTreatment}">
+                <div class="icon w-icon-dropdown-toggle"></div>
+                <div class="text-block-4">{{room.floor.selectedFloorTreatment ? room.floor.selectedFloorTreatment : 'Välj Färg på Hårdvaxolja'}}</div>
+              </div>
+              <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
+                <a href="#" class="dropdown-link w-dropdown-link" @click="room.floor.selectedFloorTreatment = ''; $forceUpdate();">Välj Färg på Hårdvaxolja</a>
+                <a v-for="fc in room.floor.floorTreatmentColors" @click="room.floor.selectedFloorTreatment = fc; $forceUpdate();" href="#" class="dropdown-link w-dropdown-link">{{fc}}</a>
+              </nav>
+            </div>
           </div>
         </div>
 
@@ -310,6 +322,7 @@
             <div class="slide-nav-2 w-slider-nav w-round"></div>
           </div>
           <div class="form-section-wrapper">
+            <div class="text-30 margin_bot"><b>Väggar</b></div>
             <div class="text-18 mb-10 light"><strong>Väggar. </strong>Ange information om väggarna i rummet.</div>
             <div data-hover="" data-delay="0" class="dropdown-2 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.walls.selectedFloorSize}">
@@ -391,8 +404,16 @@
             "50-60"
           ],
           selectedSize: '',
-          selectedFloorTreatment: false,
-          doorAmount: ''
+          selectedFloorTreatment: '',
+          doorAmount: '',
+          floorTreatmentColors: [
+            'Vit',
+            'Ljusgrå',
+            'Honung',
+            'Bärnsten',
+            'Terra grafit',
+            'Svart'
+          ]
         },
         walls: {
           height: [
@@ -497,7 +518,6 @@
           }
         },
         reloadJs() {
-          $(document).off('click')
           $('.w-dropdown').off('click')
           $('.w-dropdown').click(function(event) {
             $('.w-dropdown').each((i, dom) => {
@@ -507,6 +527,8 @@
               $(this).children().last().toggleClass('w--open')
             }
           })
+
+          $(document).off('click')
           $(document).on("click", function(event){
             var $trigger = $(".w-dropdown")
             if($trigger !== event.target && !$trigger.has(event.target).length){
@@ -541,7 +563,7 @@
               let size = room.floor.selectedSize ? parseInt(room.floor.selectedSize.split('-')[1]) : 0
               let treatment = room.floor.selectedFloorTreatment
               let dAmount = room.floor.doorAmount
-              fPrice += ((size ? (3500) : (0)) + size*(treatment ? 300 : 0) + (size/20)*200)
+              fPrice += ((size ? (3500) : (0)) + size*(treatment ? 300 : 0) + dAmount*200)
             }
             if (room.wallsSelected) {
               const spackling = {'': 0, 'Lite': 50, 'Mellan': 100, 'Mycket': 150}
