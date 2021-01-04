@@ -35,7 +35,7 @@
               @click.prevent="viewSummary = !viewSummary"
               v-if="!orderDone"
             >
-            <h2 class="text-18" style="margin-bottom: 20px;">Ändra uppgifter</h2>
+            <h2 class="text-18" style="margin-bottom: 20px;" v-if="!orderDone">Ändra uppgifter</h2>
             <img src="images/cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" style="margin-left: auto;" class="image-4">
           </div>
           <h2 class="form-header" style="margin-bottom: 40px;">Ange dina uppgifter för att fullfölja beställningen.</h2>

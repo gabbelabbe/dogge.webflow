@@ -14,7 +14,7 @@
             @click.prevent="resetClick"
             v-if="!orderDone"
           >
-          <h2 class="text-18" style="margin-bottom: 20px;">Ändra uppgifter</h2>
+          <h2 class="text-18" style="margin-bottom: 20px;" v-if="!orderDone">Ändra uppgifter</h2>
           <img src="https://assets.website-files.com/5f884aeb16efaa7d292518f7/5f89a0aadeba3b0aebe9c120_cross.svg" loading="lazy" width="36" data-w-id="7591fd3b-ddbe-8a97-3dea-15a2e26838a9" alt="" style="margin-left: auto;" class="image-4">
         </div>
         <h2 class="form-header" style="margin-bottom: 40px;">Ange dina uppgifter för att fullfölja beställningen.</h2>
