@@ -359,7 +359,8 @@
           </div>
         </div>
       </div>
-      <div class="p-100 white flex-center"><img @click="addRoom" src="images/Vector_1.svg" loading="lazy" alt="">
+      <div class="p-100 white flex-center" style="cursor: pointer;" @click="addRoom">
+        <img src="images/Vector_1.svg" loading="lazy" alt="">
         <div class="h1-banner ml-20 light">Addera ett rum.</div>
       </div>
       <div class="form-checkout-section">
@@ -488,7 +489,6 @@
             const interval = setInterval(func, 500);
             function func() {
               if ($('#successMessage').is(':visible')) {
-                alert('heck yea')
                 clearInterval(interval)
               } 
             }
