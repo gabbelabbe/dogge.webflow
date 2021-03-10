@@ -94,12 +94,12 @@
           </div>
 
           <div class="form-section-wrapper" v-if="room.carpentrySelected">
-            <div class="text-18 mb-10 light"><strong>Snickerier. </strong>Antal dörrar och fönster, höjd på snickeriet i cm och kvadratmeter golv.</div>
+            <div class="text-18 mb-10 light"><strong>Snickerier. </strong>Antal dörrar och fönster, höjd på listeret i cm och kvadratmeter golv.</div>
             <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedDoorWindowAmount}" v-if="room.carpentry.selectedDoorWindowAmount">
               {{room.carpentry.selectedDoorWindowAmount ? room.carpentry.selectedDoorWindowAmount : 'Antal dörrar och Fönster'}}
             </a>
             <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedSize}" v-if="room.carpentry.selectedSize">
-              {{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'Höjd på snickeri i'}} cm
+              {{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'höjd på lister i'}} cm
             </a>
             <a href="#" class="form-btn w-button" v-bind:class="{active: room.carpentry.selectedFloorSize}" v-if="room.carpentry.selectedFloorSize">
               {{room.carpentry.selectedFloorSize ? room.carpentry.selectedFloorSize + ' kvm' : 'Kvadratmeter Golv'}}
@@ -199,7 +199,7 @@
             <div data-hover="" data-delay="0" class="dropdown-5 w-dropdown" style="z-index: unset;">
               <div class="form-btn select w-dropdown-toggle" v-bind:class="{active: room.carpentry.selectedSize}">
                 <div class="icon w-icon-dropdown-toggle"></div>
-                <div class="text-block-4">{{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'Höjd på snickeri i'}} cm</div>
+                <div class="text-block-4">{{room.carpentry.selectedSize ? room.carpentry.selectedSize : 'höjd på lister i'}} cm</div>
               </div>
               <nav class="dropdown-list w-dropdown-list" style="z-index: 1000;">
                 <a href="#" class="dropdown-link w-dropdown-link" @click="room.carpentry.selectedSize = ''; $forceUpdate();">Höjd på snicjer i</a>
